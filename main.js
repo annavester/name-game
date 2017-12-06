@@ -2,50 +2,68 @@
  * Created by av186014 on 12/5/17.
  * Game rules = https://thenamegame-generator.com/the-name-game-rules.html
  */
-var nameGameButton = document.getElementById("btnNameGame");
+var nameGameButton = document.getElementById('btnNameGame');
 
 function isVowel(letter) {
-    var vowels = ["a", "e", "i", "o", "u"], result = false;
+  var vowels = ['a', 'e', 'i', 'o', 'u'],
+    result = false;
 
-    for (var i = 0; i < vowels.length; i++) {
-        if (vowels[i] === letter) {
-            result = true;
-            break;
-        }
+  for (var i = 0; i < vowels.length; i++) {
+    console.log(i);
+    if (vowels[i] === letter) {
+      result = true;
+      break;
     }
-
-    return result;
+  }
+  return result;
 }
+
 var convertName = function(event) {
-    var name = document.getElementById("name").value;
-    var resultContainer = document.getElementById("nameGameResult");
+  var name = document.getElementById('name').value;
+  var resultContainer = document.getElementById('nameGameResult');
 
-    var isB = false, isF = false, isM = false;
-    var shortName = "", output = "", firstLetter = "", bString = "bo-", fString = "fo-", mString = "mo-";
+  var isB = false,
+    isF = false,
+    isM = false;
 
-    if (name) {
-        shortName = name.toLowerCase();
-        firstLetter = name[0].toLowerCase();
+  var shortName = '',
+    output = '',
+    firstLetter = '',
+    bString = 'bo-',
+    fString = 'fo-',
+    mString = 'mo-';
 
-        if (!isVowel(firstLetter)) {
-            shortName = name.substr(1).toLowerCase();
-        }
+  if (name) {
+    shortName = name.toLowerCase();
+    firstLetter = name[0].toLowerCase();
 
-        isB = (firstLetter === "b");
-        isF = (firstLetter === "f");
-        isM = (firstLetter === "m");
-
-        bString = (isB) ? bString : bString + "b";
-        fString = (isF) ? fString : fString + "f";
-        mString = (isM) ? mString : mString + "m";
-
-        output = "<p>" + name +", " + name +", " + bString + shortName + "<br />";
-        output += "Banana-fana " + fString + shortName +"<br />";
-        output += "Fee-fi-" + mString + shortName + "<br />";
-        output += name + "!</p>";
-        resultContainer.innerHTML = output;
-    } else {
-        resultContainer.innerHTML = "<p>No name provided</p>";
+    if (!isVowel(firstLetter)) {
+      shortName = name.substr(1).toLowerCase();
     }
+
+    isB = firstLetter === 'b';
+    isF = firstLetter === 'f';
+    isM = firstLetter === 'm';
+
+    bString = isB ? bString : bString + 'b';
+    fString = isF ? fString : fString + 'f';
+    mString = isM ? mString : mString + 'm';
+
+    output = '<p>' + name + ', ' + name + ', ' + bString + shortName + '<br />';
+    output += 'Banana-fana ' + fString + shortName + '<br />';
+    output += 'Fee-fi-' + mString + shortName + '<br />';
+    output += name + '!</p>';
+    resultContainer.innerHTML = output;
+  } else {
+    resultContainer.innerHTML = '<p>No name provided</p>';
+  }
 };
-nameGameButton.addEventListener("click", convertName);
+
+var handleKeypress = function(event) {
+  if (event.which === 13) {
+    convertName();
+  }
+};
+
+nameGameButton.addEventListener('click', convertName);
+document.addEventListener('keypress', handleKeypress);
