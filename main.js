@@ -32,11 +32,11 @@ var convertName = function(event) {
         }
 
         isB = (firstLetter === "b");
-        isL = (firstLetter === "f");
+        isF = (firstLetter === "f");
         isM = (firstLetter === "m");
 
         bString = (isB) ? bString : bString + "b";
-        fString = (isL) ? fString : fString + "f";
+        fString = (isF) ? fString : fString + "f";
         mString = (isM) ? mString : mString + "m";
 
         output = "<p>" + name +", " + name +", " + bString + shortName + "<br />";
