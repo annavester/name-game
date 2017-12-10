@@ -9,7 +9,6 @@ function isVowel(letter) {
     result = false;
 
   for (var i = 0; i < vowels.length; i++) {
-    console.log(i);
     if (vowels[i] === letter) {
       result = true;
       break;
@@ -19,39 +18,37 @@ function isVowel(letter) {
 }
 
 var convertName = function(event) {
-  var name = document.getElementById('name').value;
-  var resultContainer = document.getElementById('nameGameResult');
-
-  var isB = false,
+  var name = document.getElementById('name').value,
+    resultContainer = document.getElementById('nameGameResult'),
+    isB = false,
     isF = false,
-    isM = false;
-
-  var shortName = '',
+    isM = false,
+    shortName = '',
     output = '',
-    firstLetter = '',
-    bString = 'bo-',
-    fString = 'fo-',
-    mString = 'mo-';
+    firstLtr = '',
+    bStr = 'bo-',
+    fStr = 'fo-',
+    mStr = 'mo-';
 
   if (name) {
     shortName = name.toLowerCase();
-    firstLetter = name[0].toLowerCase();
+    firstLtr = name[0].toLowerCase();
 
-    if (!isVowel(firstLetter)) {
+    if (!isVowel(firstLtr)) {
       shortName = name.substr(1).toLowerCase();
     }
 
-    isB = firstLetter === 'b';
-    isF = firstLetter === 'f';
-    isM = firstLetter === 'm';
+    isB = firstLtr === 'b';
+    isF = firstLtr === 'f';
+    isM = firstLtr === 'm';
 
-    bString = isB ? bString : bString + 'b';
-    fString = isF ? fString : fString + 'f';
-    mString = isM ? mString : mString + 'm';
+    bStr = isB ? bStr : bStr + 'b';
+    fStr = isF ? fStr : fStr + 'f';
+    mStr = isM ? mStr : mStr + 'm';
 
-    output = '<p>' + name + ', ' + name + ', ' + bString + shortName + '<br />';
-    output += 'Banana-fana ' + fString + shortName + '<br />';
-    output += 'Fee-fi-' + mString + shortName + '<br />';
+    output = '<p>' + name + ', ' + name + ', ' + bStr + shortName + '<br />';
+    output += 'Banana-fana ' + fStr + shortName + '<br />';
+    output += 'Fee-fi-' + mStr + shortName + '<br />';
     output += name + '!</p>';
     resultContainer.innerHTML = output;
   } else {
